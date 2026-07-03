@@ -566,6 +566,9 @@
       border-radius: 16px;
       padding: 20px;
       transition: transform 0.2s, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .project-card:hover {
@@ -584,6 +587,7 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       line-height: 1.5;
+      flex: 1;
     }
 
     .project-tool {
@@ -592,6 +596,23 @@
       letter-spacing: 0.5px;
       color: var(--accent);
       margin-bottom: 12px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
     }
 
     /* Education */
@@ -1040,10 +1061,10 @@
     <span class="section-eyebrow">Hands-on</span>
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <div class="project-card"><div class="project-tool">Playwright · JavaScript · AI</div><div class="project-title">Sauce Demo UI Automation</div><div class="project-desc">Automated Sauce Demo e-commerce flows (Login, Cart, Checkout) using Playwright with JavaScript and Page Object Model. Managed test code via GitHub with a branching strategy, assisted by GitHub Copilot AI.</div></div>
-      <div class="project-card"><div class="project-tool">Postman · REST</div><div class="project-title">Restful Booker API Testing</div><div class="project-desc">Performed end-to-end API testing on Restful Booker covering POST, GET, PUT, PATCH, and DELETE methods. Designed data-driven test cases to validate request/response structure, status codes, headers, and authentication with structured documentation.</div></div>
-      <div class="project-card"><div class="project-tool">JMeter</div><div class="project-title">BlazeDemo Performance Testing</div><div class="project-desc">Performed performance testing on the BlazeDemo web application using Apache JMeter to evaluate response time, throughput, and scalability under load. Generated detailed performance reports and CSV logs to analyze bottlenecks and validate system stability under stress.</div></div>
-      <div class="project-card"><div class="project-tool">Manual · Excel</div><div class="project-title">Gorillamove Grocery Delivery</div><div class="project-desc">Designed and documented comprehensive test scenarios covering functional, UI, and integration testing of the Gorillamove Grocery web and mobile-responsive site. Executed test cases and recorded results in an organized, traceable format in Excel. Deliverables: Test Plan, Test Case Documentation, Bug Reports, Test Metrics, Mind Map.</div></div>
+      <div class="project-card"><div class="project-tool">Playwright · JavaScript · AI</div><div class="project-title">Sauce Demo UI Automation</div><div class="project-desc">Automated Sauce Demo e-commerce flows (Login, Cart, Checkout) using Playwright with JavaScript and Page Object Model. Managed test code via GitHub with a branching strategy, assisted by GitHub Copilot AI.</div><a href="https://github.com/Rakesh6430/sauce-demo-playwright-automation" target="_blank" rel="noopener" class="project-link">💻 View on GitHub →</a></div>
+      <div class="project-card"><div class="project-tool">Postman · REST</div><div class="project-title">Restful Booker API Testing</div><div class="project-desc">Performed end-to-end API testing on Restful Booker covering POST, GET, PUT, PATCH, and DELETE methods. Designed data-driven test cases to validate request/response structure, status codes, headers, and authentication with structured documentation.</div><a href="https://github.com/Rakesh6430/API-Testing-On-Restful-Booker" target="_blank" rel="noopener" class="project-link">💻 View on GitHub →</a></div>
+      <div class="project-card"><div class="project-tool">JMeter</div><div class="project-title">BlazeDemo Performance Testing</div><div class="project-desc">Performed performance testing on the BlazeDemo web application using Apache JMeter to evaluate response time, throughput, and scalability under load. Generated detailed performance reports and CSV logs to analyze bottlenecks and validate system stability under stress.</div><a href="https://github.com/Rakesh6430/BlazeDemo_Performance_Testing" target="_blank" rel="noopener" class="project-link">💻 View on GitHub →</a></div>
+      <div class="project-card"><div class="project-tool">Manual · Excel</div><div class="project-title">Gorillamove Grocery Delivery</div><div class="project-desc">Designed and documented comprehensive test scenarios covering functional, UI, and integration testing of the Gorillamove Grocery web and mobile-responsive site. Executed test cases and recorded results in an organized, traceable format in Excel. Deliverables: Test Plan, Test Case Documentation, Bug Reports, Test Metrics, Mind Map.</div><a href="https://github.com/Rakesh6430/Manual_Testing_Project_on_Gorilla_Move_Grocery" target="_blank" rel="noopener" class="project-link">💻 View on GitHub →</a></div>
     </div>
   </section>
 
