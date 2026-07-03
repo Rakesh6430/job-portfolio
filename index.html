@@ -794,6 +794,80 @@
       transform: translateY(0);
     }
 
+    /* CV Preview Modal */
+    .cv-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.6);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .cv-modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cv-modal {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: min(900px, 100%);
+      height: min(85vh, 1000px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: scale(0.97);
+      transition: transform 0.2s ease;
+    }
+
+    .cv-modal-overlay.open .cv-modal {
+      transform: scale(1);
+    }
+
+    .cv-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cv-modal-download {
+      padding: 8px 18px;
+      font-size: 0.85rem;
+    }
+
+    .cv-modal iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      background: #525659;
+    }
+
+    @media (max-width: 700px) {
+      .cv-modal { height: 90vh; border-radius: 12px; }
+      .cv-modal-header { font-size: 0.8rem; }
+    }
+
     @media (max-width: 900px) {
       .skills-grid, .projects-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
     }
@@ -904,7 +978,7 @@
     <div class="btn-group">
       <a href="mailto:rakesh.roshanpaul1998@gmail.com" class="btn btn-primary">Get in touch</a>
       <a href="#experience" class="btn btn-outline">View work →</a>
-      <a href="CV_Rakesh_SQA_AUST_CSE_3YOE.pdf" download class="btn btn-outline">⬇ Download CV</a>
+      <button type="button" id="cvPreviewBtn" class="btn btn-outline">⬇ Download CV</button>
     </div>
   </div>
 
@@ -1027,6 +1101,19 @@
 
 <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
+<div class="cv-modal-overlay" id="cvModalOverlay">
+  <div class="cv-modal" role="dialog" aria-modal="true" aria-label="CV Preview">
+    <div class="cv-modal-header">
+      <span>CV Preview — Rakesh Roshan Paul</span>
+      <div class="cv-modal-actions">
+        <a href="CV_Rakesh_SQA_AUST_CSE_3YOE.pdf" download class="btn btn-primary cv-modal-download">⬇ Download</a>
+        <button type="button" id="cvModalClose" class="theme-toggle" aria-label="Close preview">✕</button>
+      </div>
+    </div>
+    <iframe id="cvModalFrame" title="CV Preview" src=""></iframe>
+  </div>
+</div>
+
 <script>
   // Theme toggle with persisted preference
   const themeToggle = document.getElementById('themeToggle');
@@ -1110,6 +1197,37 @@
   });
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // CV preview modal
+  const cvPreviewBtn = document.getElementById('cvPreviewBtn');
+  const cvModalOverlay = document.getElementById('cvModalOverlay');
+  const cvModalFrame = document.getElementById('cvModalFrame');
+  const cvModalClose = document.getElementById('cvModalClose');
+  const CV_PATH = 'CV_Rakesh_SQA_AUST_CSE_3YOE.pdf';
+
+  function openCvModal() {
+    if (!cvModalFrame.getAttribute('src')) {
+      cvModalFrame.setAttribute('src', CV_PATH);
+    }
+    cvModalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCvModal() {
+    cvModalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  cvPreviewBtn.addEventListener('click', openCvModal);
+  cvModalClose.addEventListener('click', closeCvModal);
+
+  cvModalOverlay.addEventListener('click', (e) => {
+    if (e.target === cvModalOverlay) closeCvModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cvModalOverlay.classList.contains('open')) closeCvModal();
   });
 </script>
 
